@@ -48,3 +48,6 @@ And bindings are handled in ***updateRenderer*** function inside the viewdefinit
             _ck(_v,1,0,currVal_0);
 ...
 ```
+***updateRenderer*** function is executed everytime Angular cycles a change detection on the component. That's one of the reasons which can make heavy detection cycles and make the application slower, if there are too many binding on the current component, this means more parameters to the updateRenderer function, and causes as heavier detection cycles.
+
+## What Triggers Change Detection
