@@ -57,7 +57,7 @@ Angular, supports change detection for low-level APIs, as follows:
 - Ajax HTTP requests
 
 While doing that, Angular uses **zones** to trigger change detection, using **zone.js** library which patches low-level browser APIs for Angular. As an [example](https://blog.angular-university.io/how-does-angular-2-change-detection-really-work/), let's look at how Angular ***overrides*** one of low-level browser APIs: **addEventListener**. 
-```
+```ruby
 function addEventListener(eventName, callback) {
      // call the real addEventListener
      callRealAddEventListener(eventName, function() {
@@ -71,4 +71,4 @@ function addEventListener(eventName, callback) {
      });
 }
 ```
-This is the new version of **addEventListener** created by Angular.
+This is the new version of **addEventListener** created by Angular. As we can see, Angular changed **addEventListener**, added new functionalities to it, and one of these functionalities is the change detectiion mechanism.
