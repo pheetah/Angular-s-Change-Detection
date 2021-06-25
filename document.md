@@ -145,11 +145,9 @@ export abstract class ViewRef extends ChangeDetectorRef {
 ```
 
 ChangeDetector has 5 useful functions. From Angular's documentation:
-```
-- markForCheck() : When a view uses the OnPush (checkOnce) change detection strategy, explicitly marks the view as changed so that it can be checked again. 
-This means change detection won't be triggered, but when the next change detection cycle runs, the properties will change.
-- detach(): Detaches this view from the change-detection tree. A detached view is not checked until it is reattached.
-- reattach(): Re-attaches the previously detached view to the change detection tree. Views are attached to the tree by default.
-- checkNoChanges(): Checks the change detector and its children, and throws if any changes are detected.
-- detectChanges(): Checks this view and its children. This happens for the component and its children regardless of their change detection strategy.
-```
+> - markForCheck() : When a view uses the OnPush (checkOnce) change detection strategy, explicitly marks the view as changed so that it can be checked again. 
+> This means change detection won't be triggered, but when the next change detection cycle runs, the properties will change.
+> - detach(): Detaches this view from the change-detection tree. A detached view is not checked until it is reattached.
+> - reattach(): Re-attaches the previously detached view to the change detection tree. Views are attached to the tree by default.
+> - checkNoChanges(): Checks the change detector and its children, and throws if any changes are detected.
+> - detectChanges(): Checks this view and its children. This happens for the component and its children regardless of their change detection strategy.
