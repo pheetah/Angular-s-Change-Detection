@@ -1,5 +1,5 @@
 # Angular's Change Detection
-*A document aiming to explain Angular's change detection*
+*A document aiming to explain Angular's change detection, Eyüp Fatih Ersoy, 24/06/2021*
 
 In general, we don't really want to change Angular's change detection behaviour as Angular does everything for us automatically. But, there are some conditions we need to put some strategy on detecting changes especially when:
  - There are a lot of bindings in the component.
@@ -82,8 +82,18 @@ This is the new version of **addEventListener** created by Angular. As we can se
 ```
 
 ## More On Change Detection
+As a  **view** is higher definition of dom elements created by Angular, a view comes with [4 important state](https://github.com/angular/angular/blob/6b79ab5abec8b5a4b43d563ce65f032990b3e3bc/packages/core/src/view/types.ts#L325), which are:
+```
+FirstCheck = 1 << 0,
+ChecksEnabled = 1 << 1,
+Errored = 1 << 2,
+Destroyed = 1 << 3
+```
+By default change detection strategy, Angular components are generated as **ChecksEnabled as true**, but developer may specify **ChecksEnabled as false**. Angular covers this behaviour in an higher order functionality which is **OnPush** strategy.
+
 
 > By default, Angular Change Detection works by checking if the value of template expressions have changed. This is done for all components.
 
 
 This means, Angular doesn't deep dives to detect changes on objects. In Angular, change is detectable, when the **reference** of object changes. This can be achieved creating a new object with new values, and assigning object to the new object, and this behaviour can be supported by the use of ```const ``` and ```readonly```. These are about to make the objects ***immutable***. There are also supported APIs to change the mutable object in the immutable way, by this way, Angular can detect changes. These are available for the data structures like [arrays and objects](https://ultimatecourses.com/blog/all-about-immutable-arrays-and-objects-in-javascript), the most used data structures of Javascript. For example ***spread operator ( {... object} )***, ***array.slice()*** are two of the most famous ones.
+
