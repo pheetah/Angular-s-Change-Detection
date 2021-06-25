@@ -113,10 +113,42 @@ By default strategy, Angular does ***dirty checking***, which means any time cha
 Even if not specified, Angular uses this change detection strategy, which makes in low-level **ChecksEnabled = true** in [ViewState](https://github.com/angular/angular/blob/6b79ab5abec8b5a4b43d563ce65f032990b3e3bc/packages/core/src/view/types.ts#L325).
 - ***OnPush Strategy***
 
-When we set our component's change detection strategy as ***OnPush Strategy***, in low-level Angular does set **ChecksEnabled = false** in [ViewState]. We decorate it using Angular's component decorators like this:
+When we set our component's change detection strategy as ***OnPush Strategy***, in low-level Angular does set **ChecksEnabled = false** in [ViewState](https://github.com/angular/angular/blob/6b79ab5abec8b5a4b43d563ce65f032990b3e3bc/packages/core/src/view/types.ts#L325). We decorate it using Angular's component decorators like this:
 ```ruby
 @Component({
 ...
  changeDetection:  ChangeDetectionStrategy.OnPush
 })
+```
+
+```
+This strategy ensures that, the component which has the strategy Onpush, won't be changed unless:
+- @Input property changes (importance of immutability)
+- the component or one of its children triggers an event handler
+- change detection is triggered manually (importance of ChangeDetectorRef)
+- an observable linked to the template via the async pipe emits a new value (importance of async pipes)
+```
+
+We have discussed about immutability and event handlers. To continue, ***ChangeDetectorRef*** is needed to be explained. When a component's view is created, this view is associated with a token named ***ChangeDetectorRef***. This token allows us to handle our change detection manually.
+
+```ruby
+export declare abstract class ChangeDetectorRef {
+    abstract checkNoChanges(): void;
+    abstract detach(): void;
+    abstract detectChanges(): void;
+    abstract markForCheck(): void;
+    abstract reattach(): void;
+}
+export abstract class ViewRef extends ChangeDetectorRef {
+   ...
+}
+```
+
+ChangeDetector has 5 useful functions. From Angular's documentation:
+```
+- markForCheck() : When a view uses the OnPush (checkOnce) change detection strategy, explicitly marks the view as changed so that it can be checked again. 
+This means change detection won't be triggered, but when the next change detection cycle runs, the properties will change.
+- detach(): Detaches this view from the change-detection tree. A detached view is not checked until it is reattached.
+- reattach(): Re-attaches the previously detached view to the change detection tree. Views are attached to the tree by default.
+- 
 ```
