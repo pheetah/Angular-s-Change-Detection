@@ -98,3 +98,17 @@ By default change detection strategy, Angular components are generated as **Chec
 This means, Angular doesn't deep dive to detect changes on objects in components whose view state is **OnPush**. In these components, change is detectable, when the **reference** of object changes. This can be achieved creating a new object with new values, and assigning object to the new object, and this behaviour can be supported by the use of ```const ``` and ```readonly``` keywords which provides us to create immutable datas. Since these are about to make the objects ***immutable***, there are also supported APIs to change the mutable object in the immutable way, by this way, Angular can detect changes. These are available for the data structures like [arrays and objects](https://ultimatecourses.com/blog/all-about-immutable-arrays-and-objects-in-javascript), the most used data structures of Javascript. For example ***spread operator ( {... object} )***, ***array.slice()*** are two of the most famous ones.
 
 To understand the idea better, [check this little project](https://stackblitz.com/edit/changedtc?file=src%2Fapp%2Fapp.component.html).
+
+## Change Detection Strategies
+- ***Default Strategy***
+By default strategy, Angular does ***dirty checking***, which means any time change detection is triggered, Angular checks component with all of its childs. This is decorated in Angular like this: 
+
+```ruby
+@Component({
+...
+ changeDetection:  ChangeDetectionStrategy.Default
+})
+```
+Even if not specified, Angular uses this change detection strategy, which makes in low-level **ChecksEnabled = true** in [ViewState](https://github.com/angular/angular/blob/6b79ab5abec8b5a4b43d563ce65f032990b3e3bc/packages/core/src/view/types.ts#L325).
+- ***OnPush Strategy***
+
