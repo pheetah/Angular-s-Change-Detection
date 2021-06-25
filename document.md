@@ -112,7 +112,7 @@ By default strategy, Angular does ***dirty checking***, which means any time cha
 ```
 Even if not specified, Angular uses this change detection strategy, which makes in low-level **ChecksEnabled = true** in [ViewState](https://github.com/angular/angular/blob/6b79ab5abec8b5a4b43d563ce65f032990b3e3bc/packages/core/src/view/types.ts#L325).
 
-![default-dirtycheck](https://user-images.githubusercontent.com/77587142/123428931-02643400-d5cf-11eb-9ff9-7c95a8294659.png)
+![default](https://user-images.githubusercontent.com/77587142/123429229-62f37100-d5cf-11eb-96eb-307693011885.gif)
 
 - ***OnPush Strategy***
 
@@ -132,8 +132,7 @@ This strategy ensures that, the component which has the strategy Onpush, won't b
 - an observable linked to the template via the async pipe emits a new value (importance of async pipes)
 ```
 
-![onpush](https://user-images.githubusercontent.com/77587142/123428957-0b550580-d5cf-11eb-82f8-f905b7a40243.png)
-
+![cd-on-push-cycle](https://user-images.githubusercontent.com/77587142/123429147-49522980-d5cf-11eb-82d5-221aed55ca4b.gif)
 
 We have discussed about immutability and event handlers. To continue, ***ChangeDetectorRef*** is needed to be explained. When a component's view is created, this view is associated with a token named ***ChangeDetectorRef***. This token allows us to handle our change detection manually.
 
