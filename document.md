@@ -159,3 +159,19 @@ ChangeDetector has 5 useful functions. From Angular's documentation:
 
 ![changedetectorref](https://user-images.githubusercontent.com/77587142/123428686-bca76b80-d5ce-11eb-8d77-b3e966cf63fe.png)
 
+OnPush stregy ignores to cycle change detection under these:
+- setTimeout() and setInterval()
+- Promise.resolve().then(), (of course, the same for Promise.reject().then())
+- rxjs subscriptions, which also includes ajax HTTP call subscriptions.
+
+And this is where ***async pipe*** becomes important. [In the source code](https://github.com/angular/angular/blob/5.2.10/packages/common/src/pipes/async_pipe.ts#L139), we see async pipe has ***markForCheck()*** function of ***ChangeDetectorRef*** inside:
+
+```ruby
+  private _updateLatestValue(async: any, value: Object): void {
+    if (async === this._obj) {
+      this._latestValue = value;
+      this._ref.markForCheck();
+    }
+```
+
+which makes async pipe to update the properties on the next cycle, on rxjs subscriptions even though component uses ***OnPush*** strategy.
