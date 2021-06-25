@@ -100,7 +100,8 @@ This means, Angular doesn't deep dive to detect changes on objects in components
 To understand the idea better, [check this little project](https://stackblitz.com/edit/changedtc?file=src%2Fapp%2Fapp.component.html).
 
 ## Change Detection Strategies
-- ***Default Strategy***
+- ***Default Strategy*** :
+
 By default strategy, Angular does ***dirty checking***, which means any time change detection is triggered, Angular checks component with all of its childs. This is decorated in Angular like this: 
 
 ```ruby
@@ -111,3 +112,11 @@ By default strategy, Angular does ***dirty checking***, which means any time cha
 ```
 Even if not specified, Angular uses this change detection strategy, which makes in low-level **ChecksEnabled = true** in [ViewState](https://github.com/angular/angular/blob/6b79ab5abec8b5a4b43d563ce65f032990b3e3bc/packages/core/src/view/types.ts#L325).
 - ***OnPush Strategy***
+
+When we set our component's change detection strategy as ***OnPush Strategy***, in low-level Angular does set **ChecksEnabled = false** in [ViewState]. We decorate it using Angular's component decorators like this:
+```ruby
+@Component({
+...
+ changeDetection:  ChangeDetectionStrategy.OnPush
+})
+```
