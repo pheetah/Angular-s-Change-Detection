@@ -51,3 +51,24 @@ And bindings are handled in ***updateRenderer*** function inside the viewdefinit
 ***updateRenderer*** function is executed everytime Angular cycles a change detection on the component. That's one of the reasons which can make heavy detection cycles and make the application slower, if there are too many binding on the current component, this means more parameters to the updateRenderer function, and causes as heavier detection cycles.
 
 ## What Triggers Change Detection
+Angular, supports change detection for low-level APIs, as follows:
+- All browser events (click, mouseover, keyup, etc.)
+- setTimeout() and setInterval()
+- Ajax HTTP requests
+
+While doing that, Angular uses **zones** to trigger change detection, using **zone.js** library which patches low-level browser APIs for Angular. As an [example](https://blog.angular-university.io/how-does-angular-2-change-detection-really-work/), let's look at how Angular ***overrides*** one of low-level browser APIs: **addEventListener**. 
+```
+function addEventListener(eventName, callback) {
+     // call the real addEventListener
+     callRealAddEventListener(eventName, function() {
+        // first call the original callback
+        callback(...);     
+        // and then run Angular-specific functionality
+        var changed = angular.runChangeDetection();
+         if (changed) {
+             angular.reRenderUIPart();
+         }
+     });
+}
+```
+This is the new version of **addEventListener** created by Angular.
