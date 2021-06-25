@@ -111,6 +111,9 @@ By default strategy, Angular does ***dirty checking***, which means any time cha
 })
 ```
 Even if not specified, Angular uses this change detection strategy, which makes in low-level **ChecksEnabled = true** in [ViewState](https://github.com/angular/angular/blob/6b79ab5abec8b5a4b43d563ce65f032990b3e3bc/packages/core/src/view/types.ts#L325).
+
+![default-dirtycheck](https://user-images.githubusercontent.com/77587142/123428931-02643400-d5cf-11eb-9ff9-7c95a8294659.png)
+
 - ***OnPush Strategy***
 
 When we set our component's change detection strategy as ***OnPush Strategy***, in low-level Angular does set **ChecksEnabled = false** in [ViewState](https://github.com/angular/angular/blob/6b79ab5abec8b5a4b43d563ce65f032990b3e3bc/packages/core/src/view/types.ts#L325). We decorate it using Angular's component decorators like this:
@@ -128,6 +131,9 @@ This strategy ensures that, the component which has the strategy Onpush, won't b
 - change detection is triggered manually (importance of ChangeDetectorRef)
 - an observable linked to the template via the async pipe emits a new value (importance of async pipes)
 ```
+
+![onpush](https://user-images.githubusercontent.com/77587142/123428957-0b550580-d5cf-11eb-82f8-f905b7a40243.png)
+
 
 We have discussed about immutability and event handlers. To continue, ***ChangeDetectorRef*** is needed to be explained. When a component's view is created, this view is associated with a token named ***ChangeDetectorRef***. This token allows us to handle our change detection manually.
 
@@ -151,3 +157,6 @@ ChangeDetector has 5 useful functions. From Angular's documentation:
 > - reattach(): Re-attaches the previously detached view to the change detection tree. Views are attached to the tree by default.
 > - checkNoChanges(): Checks the change detector and its children, and throws if any changes are detected.
 > - detectChanges(): Checks this view and its children. This happens for the component and its children regardless of their change detection strategy.
+
+![changedetectorref](https://user-images.githubusercontent.com/77587142/123428686-bca76b80-d5ce-11eb-8d77-b3e966cf63fe.png)
+
