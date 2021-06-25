@@ -159,7 +159,7 @@ ChangeDetector has 5 useful functions. From Angular's documentation:
 
 ![changedetectorref](https://user-images.githubusercontent.com/77587142/123428686-bca76b80-d5ce-11eb-8d77-b3e966cf63fe.png)
 
-OnPush stregy ignores to cycle change detection under these:
+OnPush stregy ignores to cycle change detection under these conditions:
 - setTimeout() and setInterval()
 - Promise.resolve().then(), (of course, the same for Promise.reject().then())
 - rxjs subscriptions, which also includes ajax HTTP call subscriptions.
