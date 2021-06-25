@@ -111,4 +111,3 @@ By default strategy, Angular does ***dirty checking***, which means any time cha
 ```
 Even if not specified, Angular uses this change detection strategy, which makes in low-level **ChecksEnabled = true** in [ViewState](https://github.com/angular/angular/blob/6b79ab5abec8b5a4b43d563ce65f032990b3e3bc/packages/core/src/view/types.ts#L325).
 - ***OnPush Strategy***
-
