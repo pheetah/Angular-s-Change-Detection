@@ -124,13 +124,12 @@ When we set our component's change detection strategy as ***OnPush Strategy***, 
 })
 ```
 
-```
+
 This strategy ensures that, the component which has the strategy Onpush, won't be changed unless:
 - @Input property changes (importance of immutability)
 - the component or one of its children triggers an event handler
 - change detection is triggered manually (importance of ChangeDetectorRef)
 - an observable linked to the template via the async pipe emits a new value (importance of async pipes)
-```
 
 ![cd-on-push-cycle](https://user-images.githubusercontent.com/77587142/123429147-49522980-d5cf-11eb-82d5-221aed55ca4b.gif)
 
