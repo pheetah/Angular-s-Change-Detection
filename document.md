@@ -81,6 +81,9 @@ This is the new version of **addEventListener** created by Angular. As we can se
 ....
 ```
 
-##More On Change Detection
+## More On Change Detection
+
 > By default, Angular Change Detection works by checking if the value of template expressions have changed. This is done for all components.
+
+
 This means, Angular doesn't deep dives to detect changes on objects. In Angular, change is detectable, when the **reference** of object changes. This can be achieved creating a new object with new values, and assigning object to the new object, and this behaviour can be supported by the use of ```const ``` and ```readonly```. These are about to make the objects ***immutable***. There are also supported APIs to change the mutable object in the immutable way, by this way, Angular can detect changes. These are available for the data structures like [arrays and objects](https://ultimatecourses.com/blog/all-about-immutable-arrays-and-objects-in-javascript), the most used data structures of Javascript. For example ***spread operator ( {... object} )***, ***array.slice()*** are two of the most famous ones.
