@@ -11,6 +11,21 @@ When a component is created, Angular creates a view definition to the component.
 ```ruby
 <span>I am {{name}}</span>
 ```
+with,
+
+```ruby
+@Component({
+  selector: 'AComponent',
+  templateUrl: './a.component.html',
+  styleUrls: ['./a.component.css']
+})
+export class AComponent{
+ 
+ name:string;
+
+ constructor(){}
+}
+```
 Angular turns this out;
 ```ruby
 function View_AComponent_0(l) {
