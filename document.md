@@ -191,7 +191,11 @@ And this is where ***async pipe*** becomes important. [In the source code](https
 which makes async pipe to update the properties on the next cycle, on rxjs subscriptions even though component uses ***OnPush*** strategy.
 
 
-example added: [example-onpush](https://stackblitz.com/edit/angular-ivy-gbvjnm?file=src%2Fapp%2Fapp.component.ts)
+example added: 
+[example-onpush](https://stackblitz.com/edit/angular-ivy-gbvjnm?file=src%2Fapp%2Fapp.component.ts)
+
+[additional-example](https://stackblitz.com/edit/angular-changedtc-example?file=src%2Fapp%2Fapp.component.ts)
+
 
 What happens in a change detection cycle:
 
